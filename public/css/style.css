@@ -1,0 +1,217 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+/* navbar */
+
+.navbar {
+  height: 5rem;
+  background-color: white;
+}
+
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+
+.nav-link {
+  color: #222222 !important;
+}
+
+/* footer */
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.f-info {
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: space-evenly;
+}
+
+/* --- EDITED: Filter Bar Styles --- */
+
+/* This new div holds the scrolling filters */
+.filter-bar {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  overflow-x: auto; /* Allows horizontal scrolling */
+
+  /* Clean scrollbar styles (optional but recommended) */
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+
+#filters {
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+}
+.filter {
+  margin-top: 2rem;
+  text-align: center;
+  margin-right: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  flex-shrink: 0; 
+}
+.filter:hover {
+  opacity: 1;
+}
+.filter p {
+  font-size: 0.8rem;
+}
+#filters a {
+  text-decoration: none;
+  color: inherit;
+}
+.filter.active {
+  opacity: 1;
+}
+.tax-info {
+  display: none;
+}
+
+.tax-toggle {
+  border: 1px solid black;
+  border-radius: 1rem;
+  height: 3.5rem;
+  padding: 1rem;
+  margin-left: 3rem; 
+  display: flex;
+  align-items: center;
+  
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+/* cards */
+
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p {
+  font-weight: 400 !important;
+}
+
+.listing-link {
+  text-decoration: none;
+}
+
+.add-btn {
+  background-color: #fe424d !important;
+  border: none !important;
+}
+
+/* Card Effect */
+
+.card-img-overlay {
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
+}
+
+/* show Page */
+
+.show-img {
+  height: 30vh;
+}
+
+.btns {
+  display: flex;
+}
+
+.edit-btn {
+  background-color: #fe424d !important;
+  border: none !important;
+}
+
+.show-card {
+  padding: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Map */
+
+#map {
+  width: auto;
+  height: 60vh;
+}
+
+.social-link {
+  text-decoration: none;
+}
+
+/* ---  Responsive CSS --- */
+
+@media (max-width: 768px) {
+
+  .filter-bar {
+    width: 100%; 
+  }
+
+  .filter {
+   
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .tax-toggle {
+   
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+  }
+}

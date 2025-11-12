@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<div class="row mt-3 justify-content-center">
+  
+  <div class="col-12 col-md-10 col-lg-8">
+    <br /><br />
+    <h3>Edit Your Listing</h3>
+    <form
+      action="/listings/<%= listing._id %>?_method=PUT"
+      method="POST"
+      class="needs-validation"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          name="listing[title]"
+          type="text"
+          value="<%= listing.title %>"
+          placeholder="enter title"
+          class="form-control"
+          id="title"
+          required
+        />
+        <div class="valid-feedback">Title Looks good!</div>
+        <div class="invalid-feedback">Please provide a title.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select
+          class="form-select"
+          id="category"
+          name="listing[category]"
+          required
+        >
+          <% for(let category of categories) { %>
+          <option
+            value="<%= category %>"
+            <%= listing.category === category ? 'selected' : '' %>
+          >
+            <%= category %>
+          </option>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="listing[description]"
+          class="form-control"
+          id="description"
+          rows="5"
+          required
+        ><%= listing.description %></textarea>
+        <div class="invalid-feedback">
+          Please enter a short description.
+        </div>
+      </div>
+      <br />
+      <div class="mb-3">
+        Original Listing Image:<br />
+      
+        <img
+          src="<%= originalImageUrl %>"
+          alt="Original Listing Image"
+          class="img-fluid rounded"
+          style="max-height: 250px; object-fit: cover;"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image</label>
+        <input
+          name="listing[image]"
+          type="file"
+          class="form-control"
+          id="image"
+        />
+      </div>
+
+     
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="price" class="form-label">Price</label>
+          <input
+            name="listing[price]"
+            type="number"
+            value="<%= listing.price %>"
+            id="price"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Price should be valid.</div>
+        </div>
+        <div class="mb-3 col-md-8">
+          <label for="country" class="form-label">Country</label>
+          <input
+            name="listing[country]"
+            type="text"
+            value="<%= listing.country %>"
+            id="country"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Country name should be valid.</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          name="listing[location]"
+          type="text"
+          value="<%= listing.location %>"
+          class="form-control"
+          id="location" 
+          required
+        />
+        
+        <div class="invalid-feedback">Location should be valid.</div>
+      </div>
+
+      <br />
+
+     
+      <button class="btn btn-dark add-btn mb-3 w-100">Save Changes</button>
+    </form>
+  </div>
+</div>
