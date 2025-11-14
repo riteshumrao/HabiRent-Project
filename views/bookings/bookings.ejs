@@ -6,12 +6,12 @@
     <!-- ************************************ -->
     <!--     UPCOMING BOOKINGS SECTION        -->
     <!-- ************************************ -->
-    <h2 class="mb-3">Upcoming Bookings</h2>
+    <h3 class="mb-3">Upcoming Bookings</h3>
     <% if(upcomingBookings.length > 0) { %>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 " >
             <% for(let booking of upcomingBookings) { %>
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card h-100 shadow-sm p-1 ">
                         <% if(booking.listing && booking.listing.image && booking.listing.image.url) { %>
                             <img src="<%= booking.listing.image.url.replace('/upload', '/upload/w_400,h_300,c_fill') %>" class="card-img-top" alt="<%= booking.listing.title %>">
                         <% } else { %>
@@ -19,7 +19,7 @@
                         <% } %>
                         
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h5 class="card-title mt-2 ">
                                 <% if(booking.listing) { %>
                                     <a href="/listings/<%= booking.listing._id %>" class="text-decoration-none text-dark"><%= booking.listing.title %></a>
                                 <% } else { %>
@@ -54,13 +54,13 @@
     <!-- ************************************ -->
     <!--         PAST BOOKINGS SECTION        -->
     <!-- ************************************ -->
-    <h2 class="mb-3">Past Bookings</h2>
+    <h3 class="mb-3">Past Bookings</h3>
     <% if(pastBookings.length > 0) { %>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <% for(let booking of pastBookings) { %>
                 <div class="col">
                     <!-- Added 'opacity-75' to make past bookings look faded -->
-                    <div class="card h-100 shadow-sm opacity-75"> 
+                    <div class="card h-100 shadow-sm opacity-75 p-1"> 
                         <% if(booking.listing && booking.listing.image && booking.listing.image.url) { %>
                             <img src="<%= booking.listing.image.url.replace('/upload', '/upload/w_400,h_300,c_fill') %>" class="card-img-top" alt="<%= booking.listing.title %>">
                         <% } else { %>
