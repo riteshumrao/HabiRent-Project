@@ -1,0 +1,100 @@
+<% layout('layouts/boilerplate') -%>
+
+<div class="container mt-5">
+    <h1 class="mb-4">My Bookings</h1>
+
+    <!-- ************************************ -->
+    <!--     UPCOMING BOOKINGS SECTION        -->
+    <!-- ************************************ -->
+    <h3 class="mb-3">Upcoming Bookings</h3>
+    <% if(upcomingBookings.length > 0) { %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 " >
+            <% for(let booking of upcomingBookings) { %>
+                <div class="col">
+                    <div class="card h-100 shadow-sm p-1 ">
+                        <% if(booking.listing && booking.listing.image && booking.listing.image.url) { %>
+                            <img src="<%= booking.listing.image.url.replace('/upload', '/upload/w_400,h_300,c_fill') %>" class="card-img-top" alt="<%= booking.listing.title %>">
+                        <% } else { %>
+                            <img src="https://placehold.co/400x300/f8f9fa/6c757d?text=No+Image" class="card-img-top" alt="No image available">
+                        <% } %>
+                        
+                        <div class="card-body">
+                            <h5 class="card-title mt-2 ">
+                                <% if(booking.listing) { %>
+                                    <a href="/listings/<%= booking.listing._id %>" class="text-decoration-none text-dark"><%= booking.listing.title %></a>
+                                <% } else { %>
+                                    <span class="text-muted">Listing no longer available</span>
+                                <% } %>
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Check-in:</strong> <%= new Date(booking.checkIn).toLocaleDateString() %></li>
+                                <li class="list-group-item"><strong>Check-out:</strong> <%= new Date(booking.checkOut).toLocaleDateString() %></li>
+                                <li class="list-group-item"><strong>Total Price:</strong> $<%= booking.totalPrice.toLocaleString() %></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card-footer bg-white border-top-0 pb-3">
+                            <!-- Cancel Booking Form: ONLY shows for upcoming bookings -->
+                            <form action="/my-bookings/<%= booking._id %>?_method=DELETE" method="POST" class="d-grid" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                                <button class="btn btn-danger">Cancel Booking</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="alert alert-info">
+            You have no upcoming bookings.
+        </div>
+    <% } %>
+
+    <hr class="my-5">
+
+    <!-- ************************************ -->
+    <!--         PAST BOOKINGS SECTION        -->
+    <!-- ************************************ -->
+    <h3 class="mb-3">Past Bookings</h3>
+    <% if(pastBookings.length > 0) { %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% for(let booking of pastBookings) { %>
+                <div class="col">
+                    <!-- Added 'opacity-75' to make past bookings look faded -->
+                    <div class="card h-100 shadow-sm opacity-75 p-1"> 
+                        <% if(booking.listing && booking.listing.image && booking.listing.image.url) { %>
+                            <img src="<%= booking.listing.image.url.replace('/upload', '/upload/w_400,h_300,c_fill') %>" class="card-img-top" alt="<%= booking.listing.title %>">
+                        <% } else { %>
+                            <img src="https://placehold.co/400x300/f8f9fa/6c757d?text=No+Image" class="card-img-top" alt="No image available">
+                        <% } %>
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <% if(booking.listing) { %>
+                                    <a href="/listings/<%= booking.listing._id %>" class="text-decoration-none text-dark"><%= booking.listing.title %></a>
+                                <% } else { %>
+                                    <span class="text-muted">Listing no longer available</span>
+                                <% } %>
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Check-in:</strong> <%= new Date(booking.checkIn).toLocaleDateString() %></li>
+                                <li class="list-group-item"><strong>Check-out:</strong> <%= new Date(booking.checkOut).toLocaleDateString() %></li>
+                                <li class="list-group-item"><strong>Total Price:</strong> $<%= booking.totalPrice.toLocaleString() %></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card-footer bg-light pb-3">
+                            <!-- No Cancel Button. Just shows the date it was booked. -->
+                            <p class="card-text text-muted small mb-0">
+                                Booked on: <%= booking.createdAt.toLocaleDateString() %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="alert alert-secondary">
+            You have no past bookings.
+        </div>
+    <% } %>
+</div>

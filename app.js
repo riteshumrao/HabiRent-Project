@@ -19,10 +19,12 @@ const User = require('./models/user.js');
 
 
 
+
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-const bookingRouter = require("./routes/booking.js");
+const bookingRoutes = require("./routes/booking.js");
+
 
 
 const MONGO_URL = process.env.MONGO_URI;
@@ -100,7 +102,8 @@ app.use((req, res, next) => {
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
-app.use("/listings/:id/bookings", bookingRouter);
+
+app.use("/", bookingRoutes);
 
 
 // This is the standard way to handle 404s
@@ -117,9 +120,9 @@ app.use((err, req, res, next) => {
 });
 
 
-// app.listen(8080, () => {
-//     console.log("server is listening on port 8080");
-// });
+app.listen(8080,'0.0.0.0', () => {
+    console.log("server is listening on port 8080");
+});
 
 
-module.exports = app;
+// module.exports = app;

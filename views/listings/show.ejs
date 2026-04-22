@@ -45,36 +45,40 @@
     </div>
     <% } %>
 
-    <!-- Booking Card: -->
-    <div class="card mb-3 mt-3 p-3 needs-validation" novalidate>
-      <div class="card-body">
-        <h5 class="card-title">Book this place</h5>
-        <form action="/listings/<%= listing._id %>/bookings" method="POST">
-          <div class="mb-3">
-            <label for="checkIn" class="form-label">Check-in</label>
-            <input
-              type="date"
-              class="form-control"
-              id="checkIn"
-              name="booking[checkIn]"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="checkOut" class="form-label">Check-out</label>
-            <input
-              type="date"
-              class="form-control"
-              id="checkOut"
-              name="booking[checkOut]"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-danger w-100">Book Now</button>
-        </form>
+   <!-- Booking Card: -->
+<div class="card mb-3 mt-3 p-4 needs-validation" novalidate>
+  <div class="card-body">
+    <h5 class="card-title">Book this place</h5>
+    <form action="/listings/<%= listing._id %>/bookings" method="POST">
+      
+      <!-- Check-in Input -->
+      <div class="mb-3">
+        <label for="checkIn" class="form-label">Check-in (Date and Time)</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="checkIn"
+          name="booking[checkIn]"
+          min="<%= new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16) %>"
+          required
+        />
       </div>
-    </div>
 
+      <!-- Check-out Input -->
+      <div class="mb-3">
+        <label for="checkOut" class="form-label">Check-out (Date and Time)</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          id="checkOut"
+          name="booking[checkOut]"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-danger w-100">Book Now</button>
+    </form>
+  </div>
+</div>
     <!-- Review Form: -->
     <% if(currUser) { %>
     <div class="mb-3">
